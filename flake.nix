@@ -471,7 +471,10 @@
             partOf = ["graphical-session.target"];
             serviceConfig = {
               Type = "simple";
-              ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+              ExecStart =
+                "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+                # QT5 and QT6 need qt*.qtwayland plugin installed:
+                # "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
               Restart = "on-failure";
               RestartSec = 1;
               TimeoutStopSec = 10;
